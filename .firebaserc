@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "eduflor1": {
+      "hosting": {
+        "software2": [
+          "eduflor1"
+        ]
+      }
+    }
+  }
+}
