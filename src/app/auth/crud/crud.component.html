@@ -1,0 +1,18 @@
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of collection.data">
+                <td>{{item.id}}</td>
+                <td>{{item.nombre}}</td>
+                <td>{{item.apellido}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
