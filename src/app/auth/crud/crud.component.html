@@ -3,16 +3,30 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>CI</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
+                <th>Telefono</th>
+                <th>Iess</th>
+                <th>Correo</th>
+                <th>Sueldo</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of collection.data">
+            <tr *ngFor="let item of collection.data | paginate: config ">
                 <td>{{item.id}}</td>
+                <td>{{item.ci}}</td>
                 <td>{{item.nombre}}</td>
                 <td>{{item.apellido}}</td>
+                <td>{{item.telefono}}</td>
+                <td>{{item.afiess}}</td>
+                <td>{{item.correo}}</td>
+                <td>{{item.sueldo}}</td>
+                
+
             </tr>
         </tbody>
     </table>
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
 </div>
