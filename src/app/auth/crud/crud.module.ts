@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { CrudRoutingModule } from './crud-routing.module';
 import { CrudComponent } from './crud.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [CrudComponent],
   imports: [
     CommonModule,
-    CrudRoutingModule
+    CrudRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class CrudModule { }
