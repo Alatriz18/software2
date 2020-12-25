@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       const user = await this.authSvc.login(email, password);
       if (user &&  user.user.emailVerified) {
         //redireccionamiento a otra pag
-        this.router.navigate(['/home']);
+        this.router.navigate(['/crud']);
       }else if(user){
         this.router.navigate(['/verification-email']);
       }else{
