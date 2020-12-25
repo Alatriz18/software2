@@ -24,7 +24,8 @@ const routes: Routes = [
     path:'verification-email',
     component: SendEmailComponent,
   },
-  { path: 'forgot-password', loadChildren: () => import('./auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) }
+  { path: 'forgot-password', loadChildren: () => import('./auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
+  { path: 'crud', loadChildren: () => import('./auth/crud/crud.module').then(m => m.CrudModule) }
 ];
 
 @NgModule({
