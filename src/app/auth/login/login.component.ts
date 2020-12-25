@@ -23,11 +23,14 @@ export class LoginComponent implements OnInit {
    async Onlogin(){
     const {email, password} = this.loginForm.value;
     try{
-      const user = await this.authSvc.login(email,password);
-      if(user){
+      const user = await this.authSvc.login(email, password);
+      if (user &&  user.user.emailVerified) {
         //redireccionamiento a otra pag
         this.router.navigate(['/home']);
-
+      }else if(user){
+        this.router.navigate(['/verification-email']);
+      }else{
+        this.router.navigate(['/register']);
       }
     }
     catch(error){console.log(error)}
