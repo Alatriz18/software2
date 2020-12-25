@@ -2,7 +2,7 @@
     <div class="col-md-6 mx-auto mt-5">
         <div class="card">
             <div class="card-body">
-                <h1 class="text-center">Login</h1>
+                <h1 class="text-center">Iniciar Sesion</h1>
                 <form [formGroup]="loginForm" (ngSubmit)="Onlogin()">
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -15,10 +15,10 @@
                         
                     </div>
                     
-                    <button class="btn btn-primary btn-lg btn-block">Login</button>
+                    <button class="btn btn-primary btn-lg btn-block">Iniciar Sesion</button>
                 </form>
                 <div class="form-group mt-3">
-                    <p> <a [routerLink]="['/register']">Registrar</a></p>
+                    <p>No tienes una cuenta? <a [routerLink]="['/register']">Registrar</a></p>
                     
 
                 </div>
