@@ -6,26 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crud.component.scss']
 })
 export class CrudComponent implements OnInit {
-
-  constructor() { }
   config: any;
   collection = {count: 60, data: []}
 
   ngOnInit(): void {
 
-    for(var i=0; i < this.collection.count; i++){
+    for(var i=1; i <= this.collection.count; i++){
       this.collection.data.push({
         id: i,
+        ci: "numerodecedula"+i,
         nombre: "nombre"+i,
-        apellido: "apellido"+i
-      })
+        apellido: "apellido"+i,
+        telefono: "telefono"+i,
+        afiess: "afiess"+i,
+        correo: "correo"+i,
+        sueldo: "sueldo"+i
+      });
     }
 
     this.config = {
       itemsPerpage: 5,
       currentPage: 1,
       totalItems: this.collection.count
-    }
+    };
+  }
+
+  pageChanged(event){
+    this.config.currentPage=event;
   }
 
 }
