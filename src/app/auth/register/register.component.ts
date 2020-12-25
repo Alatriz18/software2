@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       const user = await this.authSvc.register(email, password);
       if(user){
         //redireccion
-        this.router.navigate(['/home']);
+        this.router.navigate(['/verification-email']);
 
       }
     }
