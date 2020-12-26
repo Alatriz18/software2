@@ -65,6 +65,10 @@ export class CrudComponent implements OnInit {
   open(content) {
     this.modalService.open(content);
   }
+
+  guardarEmpleado(item):void{
+    this.collection.data.push(this.empleadoForm.value);
+  }
   
   
 }
