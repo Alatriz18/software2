@@ -1,6 +1,7 @@
 <div style="text-align: center;">
 
 <h2>Empleados Eduflor</h2>
+<button type="button" class="btn btn-success">Crear nuevo Empleado</button>
     <table class="table">
         <thead>
             <tr>
@@ -27,7 +28,7 @@
                 <td>{{item.sueldo}}</td>
                 <td>
                     <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">ELiminar</button>
+                    <button type="button" class="btn btn-danger" (click)="eliminar(item)">ELiminar</button>
 
                 </td>
                 
