@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-crud',
@@ -7,8 +8,9 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./crud.component.scss']
 })
 export class CrudComponent implements OnInit {
+  estudianteForm: FormGroup;
   
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(config: NgbModalConfig, private modalService: NgbModal, public fb: FormBuilder) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
@@ -19,6 +21,16 @@ export class CrudComponent implements OnInit {
   collection = {count: 10, data: []}
 
   ngOnInit(): void {
+    this.estudianteForm = this.fb.group({
+      id: ['',Validators.required],
+      nombre: ['',Validators.required],
+      apellido: ['',Validators.required],
+      telefono: ['',Validators.required],
+      afiess: ['',Validators.required],
+      correo: ['',Validators.required],
+      sueldo: ['',Validators.required]
+
+    })
 
     for(var i=1; i <= this.collection.count; i++){
       this.collection.data.push({
