@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./crud.component.scss']
 })
 export class CrudComponent implements OnInit {
-  estudianteForm: FormGroup;
+  empleadoForm: FormGroup;
   
   constructor(config: NgbModalConfig, private modalService: NgbModal, public fb: FormBuilder) {
     // customize default values of modals used by this component tree
@@ -21,7 +21,7 @@ export class CrudComponent implements OnInit {
   collection = {count: 10, data: []}
 
   ngOnInit(): void {
-    this.estudianteForm = this.fb.group({
+    this.empleadoForm = this.fb.group({
       id: ['',Validators.required],
       nombre: ['',Validators.required],
       apellido: ['',Validators.required],
