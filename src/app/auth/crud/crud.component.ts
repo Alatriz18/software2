@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-crud',
@@ -7,9 +7,13 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./crud.component.scss']
 })
 export class CrudComponent implements OnInit {
-  closeResult = '';
+  
+  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+    // customize default values of modals used by this component tree
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
-  constructor(private modalService: NgbModal) {}
 
   config: any;
   collection = {count: 10, data: []}
@@ -39,26 +43,14 @@ export class CrudComponent implements OnInit {
   pageChanged(event){
     this.config.currentPage=event;
   }
-  eliminar(item:any):void{
+
+  eliminar(item: any): void{
     this.collection.data.pop(item);
   }
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content);
   }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
+  
+  
 }
