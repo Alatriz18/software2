@@ -23,6 +23,12 @@ export class CrudComponent implements OnInit {
 
   ngOnInit(): void {
     
+    this.config = {
+      itemsPerpage: 5,
+      currentPage: 1,
+      totalItems: this.collection.data.length
+    };
+    
     this.empleadoForm = this.fb.group({
       id: ['',Validators.required],
       nombre: ['',Validators.required],
@@ -47,11 +53,7 @@ export class CrudComponent implements OnInit {
       });
     }
 
-    this.config = {
-      itemsPerpage: 5,
-      currentPage: 1,
-      totalItems: this.collection.count
-    };
+   
   }
 
   pageChanged(event){
