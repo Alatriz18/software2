@@ -22,7 +22,7 @@ export class CrudComponent implements OnInit {
   collection = {count: 10, data: []}
 
   ngOnInit(): void {
-    
+
     this.config = {
       itemsPerpage: 5,
       currentPage: 1,
@@ -63,14 +63,15 @@ export class CrudComponent implements OnInit {
   eliminar(item: any): void{
     this.collection.data.pop(item);
   }
+  guardarEmpleado():void{
+    this.collection.data.push(this.empleadoForm.value);
+  }
 
   open(content) {
     this.modalService.open(content);
   }
 
-  guardarEmpleado(item):void{
-    this.collection.data.push(this.empleadoForm.value);
-  }
+  
   
   
 }
