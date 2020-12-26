@@ -10,9 +10,9 @@ export class CrudComponent implements OnInit {
   closeResult = '';
 
   constructor(private modalService: NgbModal) {}
-  
+
   config: any;
-  collection = {count: 60, data: []}
+  collection = {count: 10, data: []}
 
   ngOnInit(): void {
 
