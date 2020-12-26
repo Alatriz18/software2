@@ -19,7 +19,7 @@ export class CrudComponent implements OnInit {
 
 
   config: any;
-  collection = {count: 10, data: []}
+  collection = {count: 0, data: []}
 
   ngOnInit(): void {
 
@@ -31,6 +31,7 @@ export class CrudComponent implements OnInit {
     
     this.empleadoForm = this.fb.group({
       id: ['',Validators.required],
+      ci: ['',Validators.required],
       nombre: ['',Validators.required],
       apellido: ['',Validators.required],
       telefono: ['',Validators.required],
@@ -40,7 +41,7 @@ export class CrudComponent implements OnInit {
 
     })
 
-    for(var i=1; i <= this.collection.count; i++){
+    for(var i=0; i < 20; i++){
       this.collection.data.push({
         id: i,
         ci: "numerodecedula"+i,
