@@ -1,4 +1,6 @@
 <div>
+
+<h2>Empleados Eduflor</h2>
     <table class="table">
         <thead>
             <tr>
@@ -13,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of collection.data | paginate: config ">
+            <tr *ngFor="let item of collection.data ">
                 <td>{{item.id}}</td>
                 <td>{{item.ci}}</td>
                 <td>{{item.nombre}}</td>
@@ -22,6 +24,11 @@
                 <td>{{item.afiess}}</td>
                 <td>{{item.correo}}</td>
                 <td>{{item.sueldo}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary">Editar</button>
+                    <button type="button" class="btn btn-danger">ELiminar</button>
+
+                </td>
                 
 
             </tr>
