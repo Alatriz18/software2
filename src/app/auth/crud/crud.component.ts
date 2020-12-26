@@ -34,5 +34,8 @@ export class CrudComponent implements OnInit {
   pageChanged(event){
     this.config.currentPage=event;
   }
+  eliminar(item:any):void{
+    this.collection.data.pop(item);
+  }
 
 }
