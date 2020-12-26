@@ -48,7 +48,11 @@
         <div class="modal-body">
             <form>
                 <div class="form-group">
-                    <form [[formGroup]="empleadoForm"]>
+                    <form [formGroup]="empleadoForm">
+                        <div class="form-group">
+                            <label >ID</label>
+                            <input type="number" formControlName="id">
+                        </div>
 
                     </form>
 
