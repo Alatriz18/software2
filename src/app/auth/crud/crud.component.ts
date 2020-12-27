@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FirebaseServiceService } from 'src/app/services/firebase-service.service';
+
 
 @Component({
   selector: 'app-crud',
@@ -9,10 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CrudComponent implements OnInit {
   closeResult = '';
-  
+
   empleadoForm: FormGroup;
-  
-  constructor(config: NgbModalConfig, private modalService: NgbModal, public fb: FormBuilder) {
+
+  constructor(config: NgbModalConfig, private modalService: NgbModal, public fb: FormBuilder, private firebaseServiceService: FirebaseServiceService) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
@@ -20,7 +22,7 @@ export class CrudComponent implements OnInit {
 
 
   config: any;
-  collection = {count: 0, data: []}
+  collection = { count: 0, data: [] }
 
   ngOnInit(): void {
 
@@ -29,7 +31,7 @@ export class CrudComponent implements OnInit {
       currentPage: 1,
       totalItems: this.collection.data.length
     };
-    
+
     this.empleadoForm = this.fb.group({
       id: ['', Validators.required],
       ci: ['', Validators.required],
@@ -40,38 +42,50 @@ export class CrudComponent implements OnInit {
       correo: ['', Validators.required],
       sueldo: ['', Validators.required]
 
-    })
+    });
 
-    for(var i=0; i < 5; i++){
-      this.collection.data.push({
-        id: i,
-        ci: "numerodecedula"+i,
-        nombre: "nombre"+i,
-        apellido: "apellido"+i,
-        telefono: "telefono"+i,
-        afiess: "afiess"+i,
-        correo: "correo"+i,
-        sueldo: "sueldo"+i
+    this.firebaseServiceService.getEmpleado().subscribe(resp => {
+      this.collection.data = resp.map((e: any) => {
+        return {
+          id: e.payload.doc.data().id,
+          ci: e.payload.doc.data().ci,
+          nombre: e.payload.doc.data().nombre,
+          apellido: e.payload.doc.data().apellido,
+          telefono: e.payload.doc.data().telefono,
+          afiess: e.payload.doc.data().afiess,
+          correo: e.payload.doc.data().correo,
+          sueldo: e.payload.doc.data().sueldo,
+          idFirebase: e.payload.doc.id,
+
+        }
+      })
+    },
+      error => {
+        console.error(error);
       });
-    }
 
-   
   }
 
- 
 
-  eliminar(item: any): void{
-    this.collection.data.pop(item);
+
+  eliminar(item: any): void {
+    this.firebaseServiceService.deleteEmpleado(item.idFirebase);
   }
-  guardarEmpleado():void{
-    this.collection.data.push(this.empleadoForm.value);
+  guardarEmpleado(): void {
+    this.firebaseServiceService.createEmpleado(this.empleadoForm.value).then(resp => {
+      this.empleadoForm.reset();
+      this.modalService.dismissAll();
+    }).catch(error => {
+      console.error(error)
+    });
+
   }
 
   open(content) {
     this.modalService.open(content);
   }
 
-  
-  
-  
+
+
+
 }
