@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of collection.data ">
+            <tr *ngFor="let item of collection.data | paginate: config ">
                 <td>{{item.id}}</td>
                 <td>{{item.ci}}</td>
                 <td>{{item.nombre}}</td>
@@ -36,7 +36,7 @@
             </tr>
         </tbody>
     </table>
-    
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 
     <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
