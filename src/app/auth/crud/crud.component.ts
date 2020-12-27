@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./crud.component.scss']
 })
 export class CrudComponent implements OnInit {
-  closeResult = '';
   
   empleadoForm: FormGroup;
   
@@ -31,18 +30,18 @@ export class CrudComponent implements OnInit {
     };
     
     this.empleadoForm = this.fb.group({
-      id: ['', Validators.required],
-      ci: ['', Validators.required],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      telefono: ['', Validators.required],
-      afiess: ['', Validators.required],
-      correo: ['', Validators.required],
-      sueldo: ['', Validators.required]
+      id: ['',Validators.required],
+      ci: ['',Validators.required],
+      nombre: ['',Validators.required],
+      apellido: ['',Validators.required],
+      telefono: ['',Validators.required],
+      afiess: ['',Validators.required],
+      correo: ['',Validators.required],
+      sueldo: ['',Validators.required]
 
     })
 
-    for(var i=0; i < 5; i++){
+    for(var i=0; i < 20; i++){
       this.collection.data.push({
         id: i,
         ci: "numerodecedula"+i,
@@ -58,7 +57,9 @@ export class CrudComponent implements OnInit {
    
   }
 
- 
+  pageChanged(event){
+    this.config.currentPage=event;
+  }
 
   eliminar(item: any): void{
     this.collection.data.pop(item);
