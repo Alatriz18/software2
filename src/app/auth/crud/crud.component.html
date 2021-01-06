@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-
+<div id="listEmpleados">
     <h2>Empleados Eduflor</h2>
     <button type="button" class="btn btn-success" (click)= "open(content)">Crear nuevo Empleado</button>
     <table class="table">
@@ -27,7 +27,7 @@
                 <td>{{item.correo}}</td>
                 <td>{{item.sueldo}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary">Editar</button>
+                    <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
                     <button type="button" class="btn btn-danger" (click)="eliminar(item)">ELiminar</button>
 
                 </td>
@@ -89,10 +89,14 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="guardarEmpleado()">Guardar</button>
+            <button type="button" class="btn btn-outline-dark" (click)="guardarEmpleado()" *ngIf="!actualizar">Guardar</button>
+            <button type="button" class="btn btn-outline-dark" (click)="actualizarEmpleado()" *ngIf="actualizar">Actualizar</button>
         </div>
       </ng-template>
 
-    
+    <div>
+        <button type="button" style="margin: 10px" class="btn btn-primary" printSectionId="listEmpleados" ngxPrint>Imprimir</button>
+    </div>
+</div>
 
 </div>
