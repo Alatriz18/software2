@@ -6,6 +6,9 @@ import { CrudComponent } from './crud.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularFireModule} from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [CrudComponent],
@@ -13,6 +16,9 @@ import { environment } from 'src/environments/environment';
     CommonModule,
     CrudRoutingModule,
     NgxPaginationModule,
+    NgbModule,
+    ReactiveFormsModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ]
 })
