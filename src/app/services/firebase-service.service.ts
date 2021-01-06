@@ -15,9 +15,9 @@ export class FirebaseServiceService {
   }
   createEmpleado(empleado:any){
     return this.firestore.collection("empleados").add(empleado);
-
   }
-  updateEmpleado(id:any){
+  
+  updateEmpleado(id:any, empleado:any){
     return this.firestore.collection("empleados").doc(id).update(empleado);
 
   }
