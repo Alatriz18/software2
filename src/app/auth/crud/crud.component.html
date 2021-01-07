@@ -1,50 +1,59 @@
 <div style="text-align: center;">
-    <div id="listEmpleados">
+
     <h2>Empleados Eduflor</h2>
 
     <button type="button" class="btn btn-success" (click)= "open(content)">Crear nuevo Empleado</button>
+    
     <table class="table">
+        <div id="lisEmpleados">
         <thead>
             <tr>
-                <th>CI</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Telefono</th>
                 <th>Correo</th>
                 <th>IESS</th>
-                
+               
                 <th>Horas extra</th>
-                <th>Horas de trabajo al dia</th>
+               
                 <th>Sueldo</th>
                 <th>Opciones</th>
+                
             </tr>
+        
         </thead>
+    
         <tbody>
+            
             <tr *ngFor="let item of collection.data ">
+                
                 <td>{{item.ci}}</td>
                 <td>{{item.nombre}}</td>
                 <td>{{item.apellido}}</td>
                 <td>{{item.telefono}}</td>
                 <td>{{item.correo}}</td>
                 <td>{{item.afiess}}</td>
-                
+               
                 <td>{{item.hextra}}</td>
-                <td>{{item.hdia}}</td>
+               
                 <td>{{item.sueldo}}</td>
+                
                 <td>
                     <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
                     <button type="button" class="btn btn-danger" (click)="eliminar(item)">ELiminar</button>
+                    
 
                 </td>
-                
+           
     
             </tr>
         
         </tbody>
+    </div>
     </table>
     
     
-</div>
+
     <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Crear Empleado</h4>
