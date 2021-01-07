@@ -3,7 +3,9 @@ import { NgbModalConfig, NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-b
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseServiceService } from 'src/app/services/firebase-service.service';
 import { isNullOrUndefined } from 'util';
-import {jsPDF} from 'jspdf';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 
 
 
@@ -24,7 +26,33 @@ export class CrudComponent implements OnInit {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
+    this.dowloadPDF();
 
+  }
+ dowloadPDF(){
+   const DATA = document.getElementById('listEmpleados');
+   const doc = new jsPDF('p','pt','a4');
+   const options = {
+     background: 'white',
+     scale: 3
+   };
+   html2canvas(DATA, options).then((canvas) => {
+    const img = canvas.toDataURL('image/PNG');
+
+    // Add image Canvas to PDF
+    const bufferX = 15;
+    const bufferY = 15;
+    const imgProps = (doc as any).getImageProperties(img);
+    const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+
+    return doc;
+  }).then((docResult) => {
+    docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+  });
+    
+    
   }
 //public descargar(){
  // var doc=new jsPDF();
@@ -48,27 +76,33 @@ export class CrudComponent implements OnInit {
     };
 
     this.empleadoForm = this.fb.group({
-      id: ['', Validators.required],
+      //id: ['', Validators.required],
       ci: ['', Validators.required],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       telefono: ['', Validators.required],
-      afiess: ['', Validators.required],
       correo: ['', Validators.required],
-      sueldo: ['', Validators.required]
-
+      afiess: ['', Validators.required],
+      //descuentos: ['', Validators.required],
+      hextra: ['', Validators.required],
+      hdia: ['', Validators.required],
+      sueldo: ['', Validators.required],
+      
     });
     
     this.firebaseServiceService.getEmpleado().subscribe(resp => {
       this.collection.data = resp.map((e: any) => {
         return {
-          id: e.payload.doc.data().id,
+          //id: e.payload.doc.data().id,
           ci: e.payload.doc.data().ci,
           nombre: e.payload.doc.data().nombre,
           apellido: e.payload.doc.data().apellido,
           telefono: e.payload.doc.data().telefono,
-          afiess: e.payload.doc.data().afiess,
           correo: e.payload.doc.data().correo,
+          afiess: e.payload.doc.data().afiess,
+          //descuentos: e.payload.doc.data().descuentos,
+          hextra: e.payload.doc.data().hextra,
+          hdia: e.payload.doc.data().hdia,
           sueldo: e.payload.doc.data().sueldo,
           idFirebase: e.payload.doc.id,
           
@@ -85,7 +119,9 @@ export class CrudComponent implements OnInit {
 
   }
 
-
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
 
   eliminar(item: any): void {
     this.firebaseServiceService.deleteEmpleado(item.idFirebase);
@@ -113,13 +149,16 @@ export class CrudComponent implements OnInit {
 
     //llenar form para editar
     this.empleadoForm.setValue({
-      id: item.id,
+      //id: item.id,
       ci: item.ci,
       nombre: item.nombre,
       apellido: item.apellido,
       telefono: item.telefono,
-      afiess: item.afiess,
       correo: item.correo,
+      afiess: item.afiess,
+      //descuentos: item.descuentos,
+      hextra: item.hextra,
+      hdia: item.hdia,
       sueldo: item.sueldo,
     });
     this.idFirabaseActualizar = item.idFirebase;
