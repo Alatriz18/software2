@@ -85,7 +85,7 @@ export class CrudComponent implements OnInit {
       afiess: ['', Validators.required],
       //descuentos: ['', Validators.required],
       hextra: ['', Validators.required],
-      hdia: ['', Validators.required],
+      //hdia: ['', Validators.required],
       sueldo: ['', Validators.required],
       
     });
@@ -102,7 +102,7 @@ export class CrudComponent implements OnInit {
           afiess: e.payload.doc.data().afiess,
           //descuentos: e.payload.doc.data().descuentos,
           hextra: e.payload.doc.data().hextra,
-          hdia: e.payload.doc.data().hdia,
+          //hdia: e.payload.doc.data().hdia,
           sueldo: e.payload.doc.data().sueldo,
           idFirebase: e.payload.doc.id,
           
@@ -158,7 +158,7 @@ export class CrudComponent implements OnInit {
       afiess: item.afiess,
       //descuentos: item.descuentos,
       hextra: item.hextra,
-      hdia: item.hdia,
+      //hdia: item.hdia,
       sueldo: item.sueldo,
     });
     this.idFirabaseActualizar = item.idFirebase;
@@ -186,6 +186,30 @@ export class CrudComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  imprimirEmpleado(){
+    const DATA = document.getElementById('oneempleado');
+   const doc = new jsPDF('p','pt','a4');
+   const options = {
+     background: 'white',
+     scale: 3
+   };
+   html2canvas(DATA, options).then((canvas) => {
+    const img = canvas.toDataURL('image/PNG');
+
+    // Add image Canvas to PDF
+    const bufferX = 15;
+    const bufferY = 15;
+    const imgProps = (doc as any).getImageProperties(img);
+    const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+
+    return doc;
+  }).then((docResult) => {
+    docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+  });
+
   }
 
  
