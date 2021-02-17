@@ -49,7 +49,7 @@ export class CrudComponent implements OnInit {
 
     return doc;
   }).then((docResult) => {
-    docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+    docResult.save(`${new Date().toISOString()}_empleados.pdf`);
   });
     
     
@@ -84,8 +84,8 @@ export class CrudComponent implements OnInit {
       correo: ['', Validators.required],
       afiess: ['', Validators.required],
       //descuentos: ['', Validators.required],
-      hextra: ['', Validators.required],
-      //hdia: ['', Validators.required],
+      horae: ['', Validators.required],
+      horass: ['', Validators.required],
       sueldo: ['', Validators.required],
       
     });
@@ -101,8 +101,8 @@ export class CrudComponent implements OnInit {
           correo: e.payload.doc.data().correo,
           afiess: e.payload.doc.data().afiess,
           //descuentos: e.payload.doc.data().descuentos,
-          hextra: e.payload.doc.data().hextra,
-          //hdia: e.payload.doc.data().hdia,
+          horae: e.payload.doc.data().horae,
+          horass: e.payload.doc.data().horass,
           sueldo: e.payload.doc.data().sueldo,
           idFirebase: e.payload.doc.id,
           
@@ -157,8 +157,8 @@ export class CrudComponent implements OnInit {
       correo: item.correo,
       afiess: item.afiess,
       //descuentos: item.descuentos,
-      hextra: item.hextra,
-      //hdia: item.hdia,
+      horae: item.horae,
+      horass: item.horass,
       sueldo: item.sueldo,
     });
     this.idFirabaseActualizar = item.idFirebase;
