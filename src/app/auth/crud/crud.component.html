@@ -1,11 +1,11 @@
 <div style="text-align: center;">
-
+  
     <h2>Empleados Eduflor</h2>
-
+  
     <button type="button" class="btn btn-success" (click)= "open(content)">Crear nuevo Empleado</button>
-    
+    <div id="lisEmpleados">
     <table class="table">
-        <div id="lisEmpleados">
+        
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -13,9 +13,7 @@
                 <th>Telefono</th>
                 <th>Correo</th>
                 <th>IESS</th>
-               
                 <th>Horas extra</th>
-               
                 <th>Sueldo</th>
                 <th>Opciones</th>
                 
@@ -33,11 +31,8 @@
                 <td>{{item.telefono}}</td>
                 <td>{{item.correo}}</td>
                 <td>{{item.afiess}}</td>
-               
                 <td>{{item.hextra}}</td>
-               
                 <td>{{item.sueldo}}</td>
-                
                 <td>
                     <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
                     <button type="button" class="btn btn-danger" (click)="eliminar(item)">ELiminar</button>
@@ -49,11 +44,9 @@
             </tr>
         
         </tbody>
-    </div>
+  
     </table>
-    
-    
-
+</div>
     <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Crear Empleado</h4>
