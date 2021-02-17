@@ -3,17 +3,18 @@
     <h2>Empleados Eduflor</h2>
   
     <button type="button" class="btn btn-success" (click)= "open(content)">Crear nuevo Empleado</button>
-    <div id="lisEmpleados">
+    <div id="listEmpleados">
     <table class="table">
         
         <thead>
             <tr>
+                <th>CI</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Telefono</th>
                 <th>Correo</th>
-                <th>IESS</th>
-                <th>Horas extra</th>
+                <th>Hora de Entrada</th>
+                <th>Hora de Salida</th>
                 <th>Sueldo</th>
                 <th>Opciones</th>
                 
@@ -30,23 +31,21 @@
                 <td>{{item.apellido}}</td>
                 <td>{{item.telefono}}</td>
                 <td>{{item.correo}}</td>
-                <td>{{item.afiess}}</td>
-                <td>{{item.hextra}}</td>
+                <td>{{item.horae}}</td>
+                <td>{{item.horass}}</td>
                 <td>{{item.sueldo}}</td>
                 <td>
                     <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
                     <button type="button" class="btn btn-danger" (click)="eliminar(item)">ELiminar</button>
-                    
-
                 </td>
            
     
             </tr>
         
         </tbody>
-  
+    
     </table>
-</div>
+    </div>
     <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Crear Empleado</h4>
@@ -76,20 +75,15 @@
                         </div>
                         <div class="form-group">
                             <label >Correo</label>
-                            <input type="text" formControlName="correo" class="form-control">
+                            <input type="email" formControlName="correo" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label >IESS</label>
-                            <input type="text" formControlName="afiess" class="form-control">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label >Horas extras</label>
-                            <input type="number" formControlName="hextra" class="form-control">
+                            <label >Horario de Entrada</label>
+                            <input type="time" formControlName="horae" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label >Horas trabajas por dia</label>
-                            <input type="number" formControlName="hdia" class="form-control">
+                            <label >Horario de Salida</label>
+                            <input type="time" formControlName="horass" class="form-control">
                         </div>
                         <div class="form-group">
                             <label >Sueldo</label>
